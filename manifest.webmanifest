@@ -1,16 +1,18 @@
 {
+  "id": "./?app=sklad-a6-2",
   "name": "Склад разбора A6",
   "short_name": "Склад A6",
   "description": "Склад разбора Audi A6 C8: поиск детали по номеру, цены, наклейки",
-  "id": "/AudiA6C8/?app=sklad-a6",
-  "start_url": "/AudiA6C8/index.html",
-  "scope": "/AudiA6C8/",
+  "start_url": "./",
+  "scope": "./",
   "display": "standalone",
+  "orientation": "portrait",
   "background_color": "#151515",
   "theme_color": "#151515",
   "lang": "ru",
   "icons": [
-    {"src": "icon-192.png", "sizes": "192x192", "type": "image/png", "purpose": "any maskable"},
-    {"src": "icon-512.png", "sizes": "512x512", "type": "image/png", "purpose": "any maskable"}
+    {"src": "icon-192.png", "sizes": "192x192", "type": "image/png", "purpose": "any"},
+    {"src": "icon-512.png", "sizes": "512x512", "type": "image/png", "purpose": "any"},
+    {"src": "icon-512.png", "sizes": "512x512", "type": "image/png", "purpose": "maskable"}
   ]
 }

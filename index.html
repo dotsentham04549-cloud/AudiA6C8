@@ -164,7 +164,7 @@ tr.ed td{background:var(--soft)}
 <header class="top"><div class="wrap">
   <div class="brand">
     <h1>Склад разбора A6 <small>Audi A6 C8 · 2020 · 45 TFSI · VIN …032485</small></h1>
-    <div class="counters" id="counters"></div>
+    <div class="counters"><button class="printbtn" id="installBtn" hidden style="background:var(--btn);color:var(--btn-fg)">Установить на телефон</button><span id="counters" class="counters"></span></div>
   </div>
   <nav class="tabs" aria-label="Разделы">
     <a href="#priemka" data-tab="priemka">Приёмка</a>
@@ -653,6 +653,12 @@ document.querySelectorAll("nav.tabs a").forEach(a=>a.onclick=e=>{e.preventDefaul
 const h=(location.hash||"").slice(1); if(["priemka","sklad","plan","itogi","nakleyki"].includes(h)) TAB=h;
 renderTabs(); renderResults(); openDetail(null); renderAll();
 init();
+/* установка на телефон */
+let deferredInstall=null;
+const isStandalone=()=>(window.matchMedia&&window.matchMedia("(display-mode: standalone)").matches)||navigator.standalone===true;
+window.addEventListener("beforeinstallprompt",e=>{e.preventDefault();deferredInstall=e;if(!isStandalone())$("#installBtn").hidden=false});
+window.addEventListener("appinstalled",()=>{deferredInstall=null;$("#installBtn").hidden=true;toast("Склад установлен — открывай его с главного экрана")});
+$("#installBtn").onclick=async()=>{ if(!deferredInstall){toast("Меню Chrome ⋮ → «Установить приложение»");return} deferredInstall.prompt(); try{await deferredInstall.userChoice}catch(_){} deferredInstall=null; $("#installBtn").hidden=true };
 </script>
 </body>
 </html>
